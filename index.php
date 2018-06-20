@@ -16,6 +16,8 @@
             <p class='message_form'></p>
 	</div>
 	<div id="wrap">
+	<!-- change data-action (make an appropriate directory path to nasdaq.php)
+	It should always end with /php/nasdaq.php and start from the folder in which the whole project is set up-->
             <form id="form_id" data-action="/datanyze/php/nasdaq.php" action="" method="post" autocomplete="off">
                 <input id="search" name="form[stock]" type="text" placeholder="Enter NASDAQ stock symbol">
                 <input id="search_submit" value="Send" type="submit" name="form[submit]">
