@@ -2,7 +2,7 @@
 
     // enter your api key here
     //you can get yours at https://www.alphavantage.co/support/#api-key
-    $apikey = "TBZ5MW40DJTSV7JW";
+    $apikey = "";
     unset($argv[0]);
     
     if(!empty($argv)){
