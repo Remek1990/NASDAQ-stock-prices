@@ -2,21 +2,22 @@
 
     // enter your api key here
     //you can get yours at https://www.alphavantage.co/support/#api-key
-    $apikey = "";
+    $apikey = "TBZ5MW40DJTSV7JW";
+    unset($argv[0]);
     
-    if(!empty($_POST['form'])){
-        $stock_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" . urlencode($_POST['form']['stock']) . "&interval=60min&apikey=" . $apikey;
+    if(!empty($argv)){
+        $stock_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" . $argv[1] . "&interval=60min&apikey=" . $apikey;
         // getting json contents from the address
         $stock_json = file_get_contents($stock_url);
         // turning it into an array
         $stock_array = json_decode($stock_json, true);
         
         // if the form has been submitted and not empty...
-        if(!empty($_POST['form']['stock'])) {
+        if(!empty($argv[1])) {
             // ...but there's an error message key in the array...
             if (!empty($stock_array['Error Message'])) {
                 // ... output an error message with the symbol sent by a user.
-                $result_price = "No data for stock symbol: {$_POST['form']['stock']}";
+                $result_price = "No data for stock symbol: {$argv[1]}";
                 echo $result_price;
             
             // ... in a good-case scenario...
@@ -32,8 +33,8 @@
                 
             }
         // in case if the form was empty when submitted, output the warning
-        } else {
-            $error_no_entry = "No stock symbol given";
-            echo $error_no_entry;
         }
+    } else {
+        $error_no_entry = "No stock symbol given";
+        echo $error_no_entry;
     }
